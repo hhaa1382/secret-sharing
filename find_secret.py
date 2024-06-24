@@ -22,3 +22,9 @@ class FindSecret:
                     raise Exception(f"{self.p} is not invertible for sum numbers !!")
                 temp *= inv * self.x[j]
         return temp
+
+    def calculateSecret(self):
+        s = 0
+        for i in range(len(self.Y)):
+            s += self.Y[i] * self.calculateMultiplication(i)
+        return s

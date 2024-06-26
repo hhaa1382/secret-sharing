@@ -1,5 +1,6 @@
 from numpy import random
 import matplotlib.pyplot as plt
+from numpy import linspace
 
 
 class MakeFunction:
@@ -25,10 +26,11 @@ class MakeFunction:
             temp = 0
             for val in self.func:
                 temp += val[0]*(pow(x+1, val[1]))
-            values.append(temp)
+            values.append(temp%self.p)
         return values
 
     def plotValues(self, values):
-        plt.plot([x+1 for x in range(self.n)], values)
+        X = linspace(0, self.n, self.n)
+        plt.plot(X, values)
         plt.show()
 

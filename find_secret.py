@@ -4,7 +4,7 @@ class FindSecret:
         self.n = n
         self.p = p
         self.Y = Y
-        self.x = [i for i in range(1, t)]
+        self.x = [i+1 for i in range(0, t)]
 
     def inverse(self, number):
         number = number % self.p
@@ -15,7 +15,7 @@ class FindSecret:
 
     def calculateMultiplication(self, i):
         temp = 1
-        for j in range(self.p):
+        for j in range(self.t):
             if i != j:
                 inv = self.inverse(self.x[j]-self.x[i])
                 if inv == -1:
@@ -27,4 +27,4 @@ class FindSecret:
         s = 0
         for i in range(len(self.Y)):
             s += self.Y[i] * self.calculateMultiplication(i)
-        return s
+        return s % self.p

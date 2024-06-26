@@ -1,4 +1,5 @@
 from numpy import random
+import matplotlib.pyplot as plt
 
 
 class MakeFunction:
@@ -26,4 +27,8 @@ class MakeFunction:
                 temp += val[0]*(pow(x+1, val[1]))
             values.append(temp)
         return values
+
+    def plotValues(self, values):
+        plt.plot([x+1 for x in range(self.n)], values)
+        plt.show()
 

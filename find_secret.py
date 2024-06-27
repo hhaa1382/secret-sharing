@@ -1,13 +1,19 @@
 class FindSecret:
-    def __init__(self, t, n, p, Y):
+    def __init__(self, t, n, p, Y, X):
         self.t = t
         self.n = n
         self.p = p
         self.Y = Y
-        self.x = [i+1 for i in range(0, t)]
+
+        if X is None:
+            self.x = [i+1 for i in range(0, t)]
+        else:
+            self.x = X
 
     def inverse(self, number):
         number = number % self.p
+        if number == 0:
+            return 0
         for i in range(1, self.p):
             if (i * number) % self.p == 1:
                 return i
@@ -19,9 +25,9 @@ class FindSecret:
             if i != j:
                 inv = self.inverse(self.x[j]-self.x[i])
                 if inv == -1:
-                    raise Exception(f"{self.p} is not invertible for sum numbers !!")
+                    raise Exception(f"{self.p} is not invertible for some numbers !!")
                 temp *= inv * self.x[j]
-        return temp
+        return temp % self.p
 
     def calculateSecret(self):
         s = 0
